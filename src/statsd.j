@@ -219,7 +219,7 @@ func emitFull(
     checkRate($rate);
     validateMetric($c.prefix, $name, $value, $tags);
     def line as string init buildLine($c.prefix, $name, $value, $kind, $rate, $tags);
-    net.sendTo($c.socket, $c.address, convert.bytesFromString($line, "utf-8"));
+    net.sendTo($c.socket, $c.address, convert.bytesFromString("utf-8", $line));
     return;
 }
 
@@ -253,7 +253,7 @@ func floatGauge(value as float) {
 
 # sendLines sends lines joined by "\n" in one datagram.
 func sendLines(c as Client, lines as list of string) {
-    net.sendTo($c.socket, $c.address, convert.bytesFromString(strings.join($lines, "\n"), "utf-8"));
+    net.sendTo($c.socket, $c.address, convert.bytesFromString("utf-8", strings.join($lines, "\n")));
     return;
 }
 
@@ -264,7 +264,7 @@ func packets(lines as list of string) {
     def current as list of string init [];
     def size as int init 0;
     for (def line in $lines) {
-        def n as int init len(convert.bytesFromString($line, "utf-8"));
+        def n as int init len(convert.bytesFromString("utf-8", $line));
         if (len($current) > 0 and $size + 1 + $n > MAX_PACKET) {
             $out[] = strings.join($current, "\n");
             $current = [];
@@ -687,7 +687,7 @@ export func flush(c as Client, b as Batch) {
         return;
     }
     for (def packet in packets($b.lines)) {
-        net.sendTo($c.socket, $c.address, convert.bytesFromString($packet, "utf-8"));
+        net.sendTo($c.socket, $c.address, convert.bytesFromString("utf-8", $packet));
     }
 }
 
