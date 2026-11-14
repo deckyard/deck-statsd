@@ -26,7 +26,7 @@ Runnable: [`examples/push.j`](https://github.com/jennifer-language/deck-statsd/b
 ## Client
 
 ```jennifer
-def struct statsd.Client {
+export def struct Client {
     socket as net.UDPSocket,   # the sending socket
     address as string,         # the agent "host:port"
     prefix as string           # a metric-name namespace ("" for none)
