@@ -310,6 +310,11 @@ func agentAddress(address as string) {
         try {
             $found = net.lookup($host);
         } catch (e) {
+            # a failed lookup is net's NetError (kind "net", op "lookup"),
+            # passed on as it is, so its reason stays readable
+            if ($e.kind == "net") {
+                throw $e;
+            }
             throw Error{kind: "statsd", message: "cannot resolve the agent host: " + $e.message};
         }
         if (len($found) == 0) {
@@ -359,7 +364,8 @@ export func client(host as string) {
  * @param address {string} the agent "host:port"
  * @param prefix {string} a metric-name namespace ("" for none)
  * @return {Client} a ready-to-use client
- * @throws {Error} kind "statsd" on an address without a port from 1 to 65535, a host that does not resolve, or an invalid prefix
+ * @throws {Error} kind "statsd" on an address without a port from 1 to 65535, a host that resolves to no address, or an invalid prefix
+ * @throws {net.NetError} kind "net" (op "lookup") when the host name cannot be resolved
  */
 export func clientWith(address as string, prefix as string) {
     if ($prefix != "") {

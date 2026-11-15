@@ -299,10 +299,6 @@ func badPort() {
     clientWith("127.0.0.1:99999", "");
 }
 
-func unknownHost() {
-    clientWith("no-such-host.invalid:8125", "");
-}
-
 func testRefusesWhatTheAgentWouldMisread() {
     for (def f in [
         "zeroRate",
@@ -313,10 +309,23 @@ func testRefusesWhatTheAgentWouldMisread() {
         "controlInValue",
         "emptyTagKey",
         "noPort",
-        "badPort",
-        "unknownHost"
+        "badPort"
     ]) {
         testing.assertThrows($f, "statsd");
+    }
+}
+
+# A host name that does not resolve is net's NetError from the lookup, passed
+# on as it is with its fields readable.
+func testAFailedLookupIsANetError() {
+    try {
+        clientWith("no-such-host.invalid:8125", "");
+        throw Error{kind: "missed", message: "a failed lookup"};
+    } catch (e) {
+        testing.assertEqual($e.kind, "net");
+        testing.assertEqual($e.op, "lookup");
+        testing.assertEqual($e.reason, "dns");
+        testing.assertFalse($e.sent);
     }
 }
 

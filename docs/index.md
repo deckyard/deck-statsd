@@ -171,7 +171,8 @@ metrics rather than collecting thousands.
   `.`-separated segments, none empty; a value holds no control character, `:`
   or `|`. `clientWith` checks the address and resolves a host name once. A bad
   name, value, tag, rate, address or prefix is a `statsd` error, so no caller
-  data can forge a metric.
+  data can forge a metric. A host name that does not resolve is `net`'s
+  `net.NetError` (kind `"net"`, `op` `"lookup"`), passed on as it is.
 
 ## See also
 
