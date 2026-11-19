@@ -81,7 +81,7 @@ func formatLine(prefix as string, name as string, value as string, kind as strin
 # NaN (it divides by the rate).
 func checkRate(rate as float) {
     if (not ($rate > 0.0)) {
-        throw Error{kind: "statsd", message: "sample rate must be greater than 0"};
+        throw Error{kind: "statsd", message: "statsd: sample rate must be greater than 0"};
     }
     return;
 }
@@ -133,7 +133,7 @@ func checkName(name as string) {
     if (not regex.matches('^[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*$', $name)) {
         throw Error{
             kind: "statsd",
-            message: "metric name is empty, has an empty segment, or an illegal character (allowed: letters, digits, and . _ -)"
+            message: "statsd: metric name is empty, has an empty segment, or an illegal character (allowed: letters, digits, and . _ -)"
         };
     }
     return;
@@ -145,7 +145,7 @@ func checkValue(value as string) {
     if ($value == "" or regex.matches('[\x00-\x1F\x7F:|]', $value)) {
         throw Error{
             kind: "statsd",
-            message: "metric value must not be empty or contain ':', '|', or a control character"
+            message: "statsd: metric value must not be empty or contain ':', '|', or a control character"
         };
     }
     return;
@@ -173,7 +173,7 @@ func checkTagField(field as string, isKey as bool) {
     if (regex.matches($illegal, $field)) {
         throw Error{
             kind: "statsd",
-            message: "tag key/value must not contain a control character, '|', ',', or (in a key) ':'"
+            message: "statsd: tag key/value must not contain a control character, '|', ',', or (in a key) ':'"
         };
     }
     return;
@@ -183,7 +183,7 @@ func checkTagField(field as string, isKey as bool) {
 # value is fine (the tag goes out as the bare key).
 func checkTag(key as string, value as string) {
     if ($key == "") {
-        throw Error{kind: "statsd", message: "tag key must not be empty"};
+        throw Error{kind: "statsd", message: "statsd: tag key must not be empty"};
     }
     checkTagField($key, true);
     checkTagField($value, false);
@@ -301,7 +301,7 @@ func agentAddress(address as string) {
         convert.toInt($port) > 65535) {
         throw Error{
             kind: "statsd",
-            message: "agent address must be host:port with a port from 1 to 65535"
+            message: "statsd: agent address must be host:port with a port from 1 to 65535"
         };
     }
     def ip as string init $host;
@@ -315,10 +315,13 @@ func agentAddress(address as string) {
             if ($e.kind == "net") {
                 throw $e;
             }
-            throw Error{kind: "statsd", message: "cannot resolve the agent host: " + $e.message};
+            throw Error{
+                kind: "statsd",
+                message: "statsd: cannot resolve the agent host: " + $e.message
+            };
         }
         if (len($found) == 0) {
-            throw Error{kind: "statsd", message: "the agent host resolves to no address"};
+            throw Error{kind: "statsd", message: "statsd: the agent host resolves to no address"};
         }
         $ip = $found[0];
         for (def a in $found) {

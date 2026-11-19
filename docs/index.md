@@ -107,7 +107,7 @@ statsd.countTagged($c, "hits", 1, $tags);  # web.hits:1|c|#env:prod,host:h1
 
 Tag keys and values are control-character validated on the wire line just like
 the metric name, so a tag carrying a newline, `|`, or `,` (which would forge an
-extra metric or tag) is a positioned `statsd` error. An empty key is an error;
+extra metric or tag) is a `statsd` error. An empty key is an error;
 an empty value sends the bare key (`|#canary`), which DogStatsD reads as a tag
 without a value.
 
