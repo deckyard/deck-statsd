@@ -1,6 +1,6 @@
 [package]
 name = "@jennifer/statsd"
-version = "0.2.0"
+version = "0.3.0"
 description = "A StatsD client: counters, gauges, timings and sets over UDP, with sample rates, DogStatsD tags and batching"
 license = "LGPL-3.0-only"
 authors = ["mplx <mplx@jennifer-lang.dev>"]
