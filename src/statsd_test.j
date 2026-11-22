@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: LGPL-3.0-only
 # SPDX-FileCopyrightText: Copyright (C) 2026 mplx <mplx@jennifer-lang.dev>
-# pragma-jennifer-version: >=0.26.0
+# pragma-jennifer-version: >=0.27.0
 #
 # statsd_test.j - white-box tests for statsd.j. Run with:
 #
@@ -149,7 +149,7 @@ func testMetricVerbsSendAndFormat() {
     increment($c, "hits");
     net.setReadDeadline($listener, 2000);
     def dg as net.Datagram init net.recvFrom($listener, 1024);
-    testing.assertEqual(convert.stringFromBytes("utf-8", $dg.data), "app.hits:1|c");
+    testing.assertEqual(encoding.decode("utf-8", $dg.data), "app.hits:1|c");
 
     def tags as map of string to string;
     $tags["env"] = "prod";
@@ -200,7 +200,7 @@ func testDefaultPortClient() {
 # The next datagram on a socket, as text; a lost one fails after 2 s.
 func received(sock as net.UDPSocket) {
     net.setReadDeadline($sock, 2000);
-    return convert.stringFromBytes("utf-8", net.recvFrom($sock, 512).data);
+    return encoding.decode("utf-8", net.recvFrom($sock, 512).data);
 }
 
 func testEmitsOnTheWire() {
@@ -235,7 +235,7 @@ func datagrams(sock as net.UDPSocket, waitMs as int) {
     while (true) {
         net.setReadDeadline($sock, $waitMs);
         try {
-            $out[] = convert.stringFromBytes("utf-8", net.recvFrom($sock, 65536).data);
+            $out[] = encoding.decode("utf-8", net.recvFrom($sock, 65536).data);
         } catch (e) {
             return $out;
         }
@@ -357,7 +357,7 @@ func testFlushSplitsLargeBatches() {
     testing.assertTrue(len($got) > 1);
     def lines as int init 0;
     for (def d in $got) {
-        testing.assertTrue(len(convert.bytesFromString("utf-8", $d)) <= MAX_PACKET);
+        testing.assertTrue(len(encoding.encode("utf-8", $d)) <= MAX_PACKET);
         $lines = $lines + len(strings.split($d, "\n"));
     }
     testing.assertEqual($lines, 200);

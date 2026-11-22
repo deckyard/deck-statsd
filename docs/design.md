@@ -106,7 +106,8 @@ succeeds whether or not one listens, so CI runs it offline.
 
 ## Dependencies on the interpreter
 
-- The floor is `>=0.26.0`, the release that deprecates the bundled module.
+- The floor is `>=0.27.0`, for the UTF-8 codecs of `encoding.encode` /
+  `decode`; the bundled module is deprecated from 0.26.0.
 - The `net` capability (UDP sockets, `net.lookup`), so the deck runs on the
   default `jennifer` binary only (`pragma-jennifer-capability: net`).
 - A failed lookup as `net.NetError` needs transport error kinds (M28.65).
