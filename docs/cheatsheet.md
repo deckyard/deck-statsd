@@ -13,7 +13,7 @@ import "@jennifer/statsd/" as statsd;
 
 | Function | Returns | Does |
 |---|---|---|
-| `statsd.client(host as string)` | `Client` | Open a client to a StatsD agent on `host` at the default port (8125), with no metric prefix |
+| `statsd.client(host as string)` | `Client` | Open a client to a StatsD™ agent on `host` at the default port (8125), with no metric prefix |
 | `statsd.clientWith(address as string, prefix as string)` | `Client` | Open a client to a StatsD agent at a full `host:port` address, with a metric-name prefix ("" for none) |
 | `statsd.count(c as Client, name as string, value as int)` |  | Adjust a counter by `value` (may be negative) |
 | `statsd.increment(c as Client, name as string)` |  | Increment a counter by 1 |
@@ -23,7 +23,7 @@ import "@jennifer/statsd/" as statsd;
 | `statsd.set(c as Client, name as string, value as string)` |  | Record a unique member in a set (the agent counts distinct values) |
 | `statsd.countRate(c as Client, name as string, value as int, rate as float)` |  | Adjust a counter by `value` at a sample `rate` |
 | `statsd.timingRate(c as Client, name as string, ms as int, rate as float)` |  | Record a timing in milliseconds at a sample `rate` |
-| `statsd.countTagged(c as Client, name as string, value as int, tags as map of string to string)` |  | Adjust a counter by `value`, carrying DogStatsD tags |
+| `statsd.countTagged(c as Client, name as string, value as int, tags as map of string to string)` |  | Adjust a counter by `value`, carrying DogStatsD™ tags |
 | `statsd.incrementTagged(c as Client, name as string, tags as map of string to string)` |  | Increment a counter by 1, carrying DogStatsD tags |
 | `statsd.decrementTagged(c as Client, name as string, tags as map of string to string)` |  | Decrement a counter by 1, carrying DogStatsD tags |
 | `statsd.gaugeTagged(c as Client, name as string, value as int, tags as map of string to string)` |  | Set a gauge to an absolute value, carrying DogStatsD tags |

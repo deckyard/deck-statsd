@@ -5,7 +5,7 @@
 
 ## Scope
 
-The deck sends StatsD metrics over UDP to a StatsD, DogStatsD or Telegraf
+The deck sends StatsD™ metrics over UDP to a StatsD, DogStatsD™ or Telegraf™
 agent: counters (`count`, `increment`, `decrement`, `countFloat`), gauges
 (`gauge`, `gaugeFloat`), timers (`timing`) and sets (`set`), with the
 optional sample-rate (`countRate`, `timingRate`) and DogStatsD tag
@@ -53,7 +53,7 @@ It deliberately leaves out:
   extra metrics.
 - **Datagrams that are not fragmented.** `flush` splits a batch, between
   lines, into datagrams of at most 1432 bytes: what fits an Ethernet frame
-  with room for tunnels, the size Etsy StatsD recommends. A fragmented
+  with room for tunnels, the size Etsy™ StatsD recommends. A fragmented
   datagram is often dropped whole. A single longer line goes alone.
 - **Value-semantic `Batch`.** Each `add*` returns a new batch with the line
   appended, validated as it is added, and the prefix is captured from the

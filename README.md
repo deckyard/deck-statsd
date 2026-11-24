@@ -5,7 +5,7 @@
 [![release](https://img.shields.io/github/v/release/jennifer-language/deck-statsd)](https://github.com/jennifer-language/deck-statsd/releases/latest)
 
 A [Jennifer](https://jennifer-lang.dev/) deck that pushes metrics to a
-StatsD agent (StatsD, Datadog's DogStatsD, Telegraf) over UDP: counters,
+StatsD™ agent (StatsD, Datadog™'s DogStatsD™, Telegraf™) over UDP: counters,
 gauges, timings and sets, with sample rates, DogStatsD tags and batching.
 Fire-and-forget: a metric is one datagram and never blocks the program.
 
@@ -58,3 +58,11 @@ LGPL-3.0-only, see [LICENSE](LICENSE). Copyright (C) 2026 mplx &lt;mplx@jennifer
 
 `tools/check-headers.sh` checks every source file's SPDX header against
 `deck.toml`.
+
+## Trademarks
+
+Datadog™ is a trademark of Datadog, Inc. Telegraf™ is a trademark of
+InfluxData Inc. DogStatsD™ and other product and company names may be
+trademarks of their respective owners. They are used only to identify the
+products this deck works with. This deck is an independent project, not
+affiliated with, sponsored or endorsed by Datadog, Inc. or InfluxData Inc.

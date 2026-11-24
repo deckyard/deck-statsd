@@ -3,10 +3,10 @@
 
 # @jennifer/statsd
 
-StatsD metrics client.
+StatsD™ metrics client.
 
 Add it with `jvc add @jennifer/statsd` and import it with `import "@jennifer/statsd/" as statsd;`. Emit `metric:value|type` lines to a
-StatsD / Datadog / Telegraf agent over UDP. This is the **push** counterpart to
+StatsD / Datadog™ / Telegraf™ agent over UDP. This is the **push** counterpart to
 a pull-based scrape: it is **fire-and-forget** (UDP, no reply, no error when no
 agent is listening), so a metric costs one datagram and never blocks the
 program. Needs the default `jennifer` binary (`net`).
@@ -108,7 +108,7 @@ statsd.countTagged($c, "hits", 1, $tags);  # web.hits:1|c|#env:prod,host:h1
 Tag keys and values are control-character validated on the wire line just like
 the metric name, so a tag carrying a newline, `|`, or `,` (which would forge an
 extra metric or tag) is a `statsd` error. An empty key is an error;
-an empty value sends the bare key (`|#canary`), which DogStatsD reads as a tag
+an empty value sends the bare key (`|#canary`), which DogStatsD™ reads as a tag
 without a value.
 
 ## Float values
@@ -179,3 +179,11 @@ metrics rather than collecting thousands.
 - [net.md](https://jennifer-lang.dev/libraries/net.html) - the UDP surface (`listenUDP` / `sendTo`) the
   client is built on.
 - [modules/index.md](https://jennifer-lang.dev/modules/index.html) - the module catalog and import rules.
+
+## Trademarks
+
+Datadog™ is a trademark of Datadog, Inc. Telegraf™ is a trademark of
+InfluxData Inc. DogStatsD™ and other product and company names may be
+trademarks of their respective owners. They are used only to identify the
+products this deck works with. This deck is an independent project, not
+affiliated with, sponsored or endorsed by Datadog, Inc. or InfluxData Inc.
