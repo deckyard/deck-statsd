@@ -25,7 +25,7 @@
  * data cannot forge extra metrics.
  * @module statsd
  * @example
- * import "@jennifer/statsd/" as statsd;
+ * import "@deckyard/statsd/" as statsd;
  * def c as statsd.Client init statsd.clientWith("127.0.0.1:8125", "web");
  * statsd.increment($c, "requests");        # web.requests:1|c
  * statsd.timing($c, "response", 42);       # web.response:42|ms

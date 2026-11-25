@@ -1,8 +1,8 @@
-# @jennifer/statsd
+# @deckyard/statsd
 
-[![test](https://github.com/jennifer-language/deck-statsd/actions/workflows/test.yml/badge.svg)](https://github.com/jennifer-language/deck-statsd/actions/workflows/test.yml)
-[![Documentation](https://img.shields.io/badge/docs-github%20pages-blue)](https://jennifer-language.github.io/deck-statsd/)
-[![release](https://img.shields.io/github/v/release/jennifer-language/deck-statsd)](https://github.com/jennifer-language/deck-statsd/releases/latest)
+[![test](https://github.com/deckyard/deck-statsd/actions/workflows/test.yml/badge.svg)](https://github.com/deckyard/deck-statsd/actions/workflows/test.yml)
+[![Documentation](https://img.shields.io/badge/docs-github%20pages-blue)](https://deckyard.github.io/deck-statsd/)
+[![release](https://img.shields.io/github/v/release/deckyard/deck-statsd)](https://github.com/deckyard/deck-statsd/releases/latest)
 
 A [Jennifer](https://jennifer-lang.dev/) deck that pushes metrics to a
 StatsD™ agent (StatsD, Datadog™'s DogStatsD™, Telegraf™) over UDP: counters,
@@ -13,15 +13,18 @@ It was Jennifer's bundled `statsd.j` module until 0.27; the surface is the same,
 so moving over changes only the import:
 
 ```jennifer
-import "@jennifer/statsd/" as statsd;   # was: import "statsd.j" as statsd;
+import "@deckyard/statsd/" as statsd;   # was: import "statsd.j" as statsd;
 ```
 
-**[Documentation](https://jennifer-language.github.io/deck-statsd/)**
+Up to 0.4.0 this deck was `@jennifer/statsd`. To switch, change the `[decks]`
+entry to `"@deckyard/statsd" = "^0.5.0"` and the imports to `"@deckyard/statsd/"`.
+
+**[Documentation](https://deckyard.github.io/deck-statsd/)**
 
 ## Install
 
 ```sh
-jvc add @jennifer/statsd
+jvc add @deckyard/statsd
 ```
 
 This vendors the deck to `vendor/<scope>/statsd/`. Without `jvc`, unpack the
@@ -30,7 +33,7 @@ This vendors the deck to `vendor/<scope>/statsd/`. Without `jvc`, unpack the
 ## Usage
 
 ```jennifer
-import "@jennifer/statsd/" as statsd;
+import "@deckyard/statsd/" as statsd;
 
 def c as statsd.Client init statsd.clientWith("127.0.0.1:8125", "web");
 statsd.increment($c, "requests");

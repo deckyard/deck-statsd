@@ -3,10 +3,10 @@
 
 # statsd cheatsheet
 
-Every export of `@jennifer/statsd`. The guide is [the introduction](index.md).
+Every export of `@deckyard/statsd`. The guide is [the introduction](index.md).
 
 ```jennifer
-import "@jennifer/statsd/" as statsd;
+import "@deckyard/statsd/" as statsd;
 ```
 
 ## Functions

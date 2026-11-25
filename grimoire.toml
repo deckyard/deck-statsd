@@ -1,7 +1,7 @@
-# Grimoire book configuration for the @jennifer/statsd documentation.
+# Grimoire book configuration for the @deckyard/statsd documentation.
 
 [book]
-title = "@jennifer/statsd"
+title = "@deckyard/statsd"
 description = "A StatsD client: counters, gauges, timings and sets over UDP, with sample rates, DogStatsD tags and batching"
 language = "en"
 src = "docs"
@@ -18,10 +18,10 @@ navPosition = "left"
 tocPosition = "right"
 tocDepth = 3
 sectionNumbers = true
-titleUrl = "https://jennifer-language.github.io/deck-statsd/"
-repoUrl = "https://github.com/jennifer-language/deck-statsd"
+titleUrl = "https://deckyard.github.io/deck-statsd/"
+repoUrl = "https://github.com/deckyard/deck-statsd"
 repoLabel = "Source"
-editUrl = "https://github.com/jennifer-language/deck-statsd/edit/main/docs/{path}"
+editUrl = "https://github.com/deckyard/deck-statsd/edit/main/docs/{path}"
 
 [highlight]
 enabled = true

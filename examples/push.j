@@ -4,7 +4,7 @@
 # pragma-jennifer-version: >=0.27.0
 
 /**
- * @jennifer/statsd: a fire-and-forget StatsD client over
+ * @deckyard/statsd: a fire-and-forget StatsD client over
  * UDP. Push a handful of metrics (counter / gauge / timer / set) to an agent.
  * Needs the default `jennifer` binary (net). Because StatsD is UDP, this sends
  * without error even when no agent is listening - point it at a real agent

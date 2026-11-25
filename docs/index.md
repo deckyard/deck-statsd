@@ -1,18 +1,18 @@
 <!-- SPDX-License-Identifier: LGPL-3.0-only -->
 <!-- SPDX-FileCopyrightText: Copyright (C) 2026 mplx <mplx@jennifer-lang.dev> -->
 
-# @jennifer/statsd
+# @deckyard/statsd
 
 StatsD™ metrics client.
 
-Add it with `jvc add @jennifer/statsd` and import it with `import "@jennifer/statsd/" as statsd;`. Emit `metric:value|type` lines to a
+Add it with `jvc add @deckyard/statsd` and import it with `import "@deckyard/statsd/" as statsd;`. Emit `metric:value|type` lines to a
 StatsD / Datadog™ / Telegraf™ agent over UDP. This is the **push** counterpart to
 a pull-based scrape: it is **fire-and-forget** (UDP, no reply, no error when no
 agent is listening), so a metric costs one datagram and never blocks the
 program. Needs the default `jennifer` binary (`net`).
 
 ```jennifer
-import "@jennifer/statsd/" as statsd;
+import "@deckyard/statsd/" as statsd;
 
 def c as statsd.Client init statsd.clientWith("127.0.0.1:8125", "web");
 statsd.increment($c, "requests");        # web.requests:1|c
@@ -21,7 +21,7 @@ statsd.gauge($c, "queue.depth", 7);      # web.queue.depth:7|g
 statsd.close($c);
 ```
 
-Runnable: [`examples/push.j`](https://github.com/jennifer-language/deck-statsd/blob/main/examples/push.j).
+Runnable: [`examples/push.j`](https://github.com/deckyard/deck-statsd/blob/main/examples/push.j).
 
 ## Client
 
@@ -173,6 +173,15 @@ metrics rather than collecting thousands.
   name, value, tag, rate, address or prefix is a `statsd` error, so no caller
   data can forge a metric. A host name that does not resolve is `net`'s
   `net.NetError` (kind `"net"`, `op` `"lookup"`), passed on as it is.
+
+## Moving from `@jennifer/statsd`
+
+Up to 0.4.0 this deck was `@jennifer/statsd`. Change the `[decks]` entry to
+`"@deckyard/statsd" = "^0.5.0"` and the imports:
+
+```jennifer
+import "@deckyard/statsd/" as statsd;
+```
 
 ## See also
 
